@@ -1,16 +1,26 @@
 import mongoose from "mongoose";
 
 const blogPostSchema = mongoose.Schema({
-    title : String,
-    description : String,
+    title : {
+        type: String,
+        required : true
+    },
+    description : {
+        type: String,
+        required : true
+    },
+    content : String,
     creator : {
         type : mongoose.Types.ObjectId,
         ref : "Users"
     },
-    selectedFile: String,
-    views : {
-        type : Number,
-        default : 0
+    attachment: String,
+    comments : [
+        {type : String}
+    ],
+    createdAt : {
+        type: Date,
+        default: new Date()
     }
 }, {collection: "BlogPost"})
 

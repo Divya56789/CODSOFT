@@ -12,8 +12,10 @@ export const getBlogPosts = async (req, res) => {
 }
 
 export const createBlogPost = async (req, res) => {
-    const data = req.body;
-    const newBlogPost = new BlogPost(data);
+    const post = req.body;
+    const newBlogPost = new BlogPost({...post, creator : req.userId, createdAt: new Date().toISOString()});
+
+    // if(!req.userId) return res.status(400).json({message: "Unauthenticated"})
     try {
         await newBlogPost.save();
         res.status(209).json({message: "Successfully created BlogPost.", newBlogPost})
@@ -48,4 +50,15 @@ export const deleteBlogPost = async (req, res) => {
     } catch (error) {
         
     }
+}
+
+export const addCommentToPost = async (req, res) => {
+    const postId = req.body.postId;
+    const comment = req.body.comment;
+    const post =await BlogPost.findById(postId);
+    const previousComment = post.comments;
+    previousComment.push(comment);
+    const updatedPost = await BlogPost.findByIdAndUpdate(postId, {comments : previousComment}, {new: true});
+    res.json({message: "Successfully updated post", updatedPost})
+
 }

@@ -3,15 +3,55 @@
     padding:0;
     box-sizing: border-box;
 }
-:root{
-    /* background-color: pink; */
-}
+
 body{
     font-family: Inter, system-ui, Avenir, Helvetica, Arial,  sans-serif;
     line-height: 1.5;
     font-weight: 400;
     width: 90%;
     margin: auto;
-    border: 2px solid aqua;
+    border: 2px solid aqua;   
+    text-wrap: wrap;
+ 
+}
+@media (max-width: 585px) {
+    body{
+        width: 96%;
+        margin: auto;
+    }
+}
+p{
+    font-weight: 600;
+}
+.user_avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     
+}
+
+
+
+/* profile page css */
+.profile_page{
+    border:2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile_page_content{
+    min-width: 600px;
+    height: auto;
+    border:1px solid red;
+    background-color:  #f0f0f0;
+    border-radius: 10px;
+}
+.profile_page_content input{
+    width: 100%;
+    padding: 0.5em;
+}
+.profle-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

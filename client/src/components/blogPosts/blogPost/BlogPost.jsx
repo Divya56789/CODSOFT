@@ -1,26 +1,61 @@
 import './blogPost.css';
-import scenery from '../../../assets/scenery.jpg';
 import user from '../../../assets/user.jpg'
+import {useSelector } from 'react-redux';
+import moment from 'moment';
+import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom';
 
 
-const BlogPost = () => {
+const BlogPost = ({ onPostClick }) => {
+  const post = useSelector(state => state.posts);
+  const location = useLocation();
+  const allBlogs = ['/blog']
+
+  if (post.loading) {
+    return <div><h1>Loading...</h1></div>;
+  }
+
   return (
-    <div className='blogPost'>
-      <img src={scenery} alt="blogPost_img" />
-      <div className="latest_blog_content">
-            <div className="content_header">
+    <>
+    {!allBlogs.includes(location.pathname) ? 
+    (post.blogPosts.slice(0, 5).map((post) => {
+      return <div className='blogPost' key={post._id} onClick={() => onPostClick(post._id)}>
+      <img src={post.attachment} alt="blogPost_img" />
+      <div className="blog_content">
+            <div className="blog_header">
               <img src={user} alt="user_pic" className='user_avatar'/>
-              <p>username</p>
-              <p>.</p>
-              <p>12 minutes ago</p>
+              <p>{post.creator}</p>
+              <p>•</p>
+              <p>{moment(post.createdAt).fromNow()}</p>
             </div>
-            <div className="content">
-                <h1>Where To Watch John Wick: Chapter 4</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem temporibus ullam cumque reprehenderit, molestiae sed, optio eos impedit quibusdam iusto expedita laboriosam quis? Odit modi magni labore expedita rerum cumque!</p>
-          </div>
+                <h3>{post.title}</h3>
+                <p>{post.description}</p> 
         </div>
     </div>
+    })) : (
+      post.blogPosts.map((post) => {
+        return <div className='blogPost' key={post._id} onClick={() => onPostClick(post._id)}>
+        <img src={post.attachment} alt="blogPost_img" />
+        <div className="blog_content">
+              <div className="blog_header">
+                <img src={user} alt="user_pic" className='user_avatar'/>
+                <p>{post.creator}</p>
+                <p>•</p>
+                <p>{moment(post.createdAt).fromNow()}</p>
+              </div>
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p> 
+          </div>
+      </div>
+      })   
+    )   
+    }
+    </>
   )
 }
 
-export default BlogPost
+BlogPost.propTypes = {
+  onPostClick: PropTypes.func.isRequired
+}
+export default BlogPost;
+

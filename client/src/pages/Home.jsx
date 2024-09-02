@@ -1,15 +1,19 @@
-import BlogPosts from "../components/blogPosts/BlogPosts";
-import Nav from '../components/nav/Nav';
-import Header from '../components/header/Header';
-import Footer from '../components/footer/Footer';
+import { useDispatch } from "react-redux";
+import { fetchPosts } from "../actions/posts";
+import { useEffect } from "react";
+import { Header , BlogPosts} from "../components";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch])
+  
   return (
     <div style={{display: "flex", flexDirection: "column", gap:"2rem"}}>
-      <Nav/>
       <Header/>
       <BlogPosts/>
-      <Footer/>
     </div>
   )
 }

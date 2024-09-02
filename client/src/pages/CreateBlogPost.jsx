@@ -1,11 +1,11 @@
-import BlogPostForm from "../components/blogPostForm/BlogPostForm"
+import BlogPostForm from "../components/blogPostForm/BlogPostForm";
 
 const CreateBlogPost = () => {
   return (
-    <div>
-        <BlogPostForm/>
-    </div>
+    <>
+      <BlogPostForm />
+    </>
   )
 }
 
-export default CreateBlogPost
+export default CreateBlogPost;
