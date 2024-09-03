@@ -3,13 +3,14 @@ import './blogPostForm.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import sent from '../../assets/sent.svg';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPost } from '../../actions/posts';
 
 
 const BlogPostForm = () => {
   const dispatch = useDispatch();
   const [postData, setPostData] = useState({title : "", description: "",content: "", attachment: ""});
+  const user = useSelector(state => state.users) 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +40,9 @@ const BlogPostForm = () => {
     setPostData({title : " ", description: " ",content: " ", attachment: " "});
   }
   return (
-      <form method="post"  onSubmit={handleSubmit} >
+    <>
+      {user.token ? (
+        <form method="post"  onSubmit={handleSubmit} >
 
         <div className="create_blog_post">
           <div className="write_content" >
@@ -62,7 +65,8 @@ const BlogPostForm = () => {
             <img src={sent} alt="sent_icon" />
             </button>
         </div>
-      </form>
+      </form>) : (<p>Please sign in to create a blog post.</p>)}
+    </>  
   )
 }
 

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchPosts } from "../actions/posts";
+import { addCommentToPost, fetchPosts } from "../actions/posts";
 
 const initialState = {
     loading : false,
@@ -26,6 +26,10 @@ const postslice = createSlice({
             state.blogPosts = [];
             state.error = action.payload;
         })
+        .addCase(addCommentToPost.fulfilled, (state, action) => {
+            const updatedPost = action.payload;
+            state.blogPosts = state.blogPosts.map(post => post._id === updatedPost._id ? updatedPost : post);
+        });
     }
 })
 

@@ -2,8 +2,9 @@ import './header.css';
 import user from '../../assets/user.jpg';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
+import PropTypes  from 'prop-types';
 
-const Header = () => {
+const Header = ({onPostClick}) => {
   const post = useSelector(state => state.posts.blogPosts);
 
   return (
@@ -13,7 +14,7 @@ const Header = () => {
           <h1>Craft narratives ✍️ that ignite <span>inspiration</span> 💡,<br /> <span>knowledge</span> 📙, and <span>entertainment</span> 🎬</h1>
       </div>
       {post.map((post) => {
-        return <div className="latest_blog" key={post._id}>
+        return <div className="latest_blog" key={post._id} onClick={() => onPostClick(post._id)}>
             <img src={post.attachment} alt="blgPost_img" className="latest_blog_attchment"/>
         <div className="latest_blog_content">
             <div className="content_header">
@@ -32,5 +33,7 @@ const Header = () => {
     </header>
   )
 }
-
+Header.propTypes = {
+  onPostClick: PropTypes.func.isRequired
+}
 export default Header;

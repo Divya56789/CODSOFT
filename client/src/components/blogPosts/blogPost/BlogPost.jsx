@@ -6,19 +6,19 @@ import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom';
 
 
-const BlogPost = ({ onPostClick }) => {
-  const post = useSelector(state => state.posts);
+const BlogPost = ({ onPostClick, searchedPost =[] }) => {
+  const post = useSelector(state => state.posts.blogPosts);
   const location = useLocation();
   const allBlogs = ['/blog']
 
   if (post.loading) {
-    return <div><h1>Loading...</h1></div>;
+    return <div className='container'><h1>Loading...</h1></div>;
   }
 
   return (
     <>
     {!allBlogs.includes(location.pathname) ? 
-    (post.blogPosts.slice(0, 5).map((post) => {
+    (post.slice(0, 5).map((post) => {
       return <div className='blogPost' key={post._id} onClick={() => onPostClick(post._id)}>
       <img src={post.attachment} alt="blogPost_img" />
       <div className="blog_content">
@@ -33,7 +33,8 @@ const BlogPost = ({ onPostClick }) => {
         </div>
     </div>
     })) : (
-      post.blogPosts.map((post) => {
+      searchedPost.length === 0 ? <div><h1>No Posts found</h1></div> :
+      searchedPost.map((post) => {
         return <div className='blogPost' key={post._id} onClick={() => onPostClick(post._id)}>
         <img src={post.attachment} alt="blogPost_img" />
         <div className="blog_content">
@@ -55,7 +56,8 @@ const BlogPost = ({ onPostClick }) => {
 }
 
 BlogPost.propTypes = {
-  onPostClick: PropTypes.func.isRequired
+  onPostClick: PropTypes.func.isRequired,
+  searchedPost: PropTypes.array
 }
 export default BlogPost;
 

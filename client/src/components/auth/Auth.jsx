@@ -5,35 +5,36 @@ import { signIn, signUp } from '../../actions/auth';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
-// const InvalidUser = () => {
-//   return <div>
-//     <h1>Invalid User</h1>
-//   </div>
-// }
+
 const Auth = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isSignUp, setIsSignUp] = useState(false);
     const [formData, setFormData] = useState({firstName : "", lastName : "", email:"", password: ""});
+    const result = useSelector(state => state.users);
 
     const switchMode = () => {
         setIsSignUp((prev) => !prev);
     }
-    const submitFormData = (e) => {
-      console.log(result);
+    const submitFormData =async (e) => {
       e.preventDefault();
-        if(isSignUp){
-          dispatch(signUp(formData))
-        }else{
-          dispatch(signIn(formData))
-          result.user.user.email === formData.email && result.user.user.password ? navigate('/'): <h1>Invalid credentials</h1>
-        }
+
+      if (isSignUp) {
+        await dispatch(signUp(formData)).then(() => {
+            if (result.token) navigate('/');
+        });
+    } else {
+        await dispatch(signIn(formData)).then(() => {
+            if (result.token) navigate('/');
+            else alert('Invalid credentials');
+        });
+    }
+
       
       //clear the form data
       setFormData({firstName : "", lastName : "", email:"", password: ""})
     }
 
-    const result = useSelector(state => state.users);
 
     const handleChange = (e) => {
       setFormData({...formData, [e.target.name] : e.target.value})

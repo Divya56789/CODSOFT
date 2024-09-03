@@ -1,3 +1,8 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .blogPost{
     display: flex;
     flex-direction: column;
@@ -5,7 +10,8 @@
     flex: 1; 
     max-width: calc(20% - 2em);
     object-fit: contain;
-    gap: 1em
+    gap: 1em;
+    cursor: pointer;
 }
 .blogPost img{
     height: 220px; 

@@ -9,3 +9,7 @@ export const fetchPosts = createAsyncThunk('blogPost/getAll', async() => {
 export const createPost = createAsyncThunk('blogPost/create', async(newPost) => {
     return await api.createPost(newPost);
 })
+
+export const addCommentToPost = createAsyncThunk('blogPost/addComment', async(post) => {
+    return await api.addCommentToPost(post);
+})

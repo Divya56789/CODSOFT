@@ -30,7 +30,7 @@ export const signUp = async (req, res) => {
         const newUser =await Users.create({email,firstName, lastName, password : hashedPassword});
         const token = jwt.sign({email : newUser.email, id : newUser._id}, process.env.SECRET, {expiresIn: "1h"});
 
-        res.status(201).json({message: "User successfully signed Up", newUser, token})
+        res.status(201).json({message: "User successfully signed Up", user: newUser, token})
     } catch (error) {
         res.status(500).json({message: "Server error", error})
 

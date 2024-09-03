@@ -21,3 +21,12 @@ export const createPost = async (newPost) => {
         throw error;
     }
 }
+export const addCommentToPost = async (post) => {
+    try {
+        const res = await axios.put(`${baseUrl}/add/comment`, post);
+        return res.data.updatedPost;
+    } catch (error) {
+        console.log("add comment error",error);
+        throw error;
+    }
+}

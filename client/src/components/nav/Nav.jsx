@@ -13,8 +13,9 @@ const Nav = () => {
 
   const handleSearch = () => {
     if (searchTerm) {
-      navigate(`/blog?query=${searchTerm}`);
+      navigate(`/blog?search=${searchTerm}`);
     }
+    
   };
   return (
     <nav>
@@ -33,7 +34,7 @@ const Nav = () => {
           </ul>
       </div>
       <div className="nav_right">
-      <div className="search-container">
+        <div className="search-container">
           <input 
             type="text" 
             placeholder="Search Post..." 

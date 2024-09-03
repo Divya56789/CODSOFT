@@ -10,7 +10,7 @@ body{
     font-weight: 400;
     width: 90%;
     margin: auto;
-    border: 2px solid aqua;   
+    /* border: 2px solid aqua;    */
     text-wrap: wrap;
  
 }
@@ -34,24 +34,104 @@ p{
 
 /* profile page css */
 .profile_page{
-    border:2px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color:  #f0f0f0;
+
 }
 .profile_page_content{
     min-width: 600px;
     height: auto;
-    border:1px solid red;
-    background-color:  #f0f0f0;
-    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap:1em
 }
-.profile_page_content input{
-    width: 100%;
-    padding: 0.5em;
-}
+
 .profle-pic{
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
+.user-info{
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 18px;
+    background-color: #f0f0f0;
+    border:2px solid rgba(240, 240, 237, 0.985)
+}
+.logout {
+    color: rgba(240, 240, 237, 0.985);
+    background-color: #c00a0a;
+    border: none;
+    padding: 0.5em 0.8em;
+    border-radius: 18px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    max-width: 100px;
+}
+@media screen and (max-width: 678px){
+    .profile_page{
+        width: 100%;
+    }
+    .profile_page_content{
+        min-width: 0;
+        width: 100%;
+    }
+    .profile_page_content{
+        background-color: #f0f0f0;
+
+    }
+    .user-info{
+        background-color: white;
+    }
+}
+
+/* styling the comment section */
+.comment-section {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.comment-section h3 {
+    margin-bottom: 10px;
+}
+
+.comment-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.comment-section li {
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comment-section textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.comment-section button {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.comment-section button:hover {
+    background-color: #0056b3;
+}
+

@@ -19,6 +19,7 @@ header{
     align-items: center;
     flex:1;
     gap:2em;
+    cursor: pointer;
 }
 .latest_blog_attchment {
     border-radius: 10px;

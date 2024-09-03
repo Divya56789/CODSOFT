@@ -2,13 +2,11 @@ import BlogPost from './blogPost/BlogPost'
 import './blogPosts.css';
 import {useNavigate} from 'react-router-dom';
 import right from '../../assets/right.svg';
+import PropTypes from 'prop-types';
 
-const BlogPosts = () => {
+const BlogPosts = ({onPostClick}) => {
   const navigate = useNavigate();
   
-  const handlePostClick = (id) => {
-    navigate(`/blog/${id}`);
-  };
 
   return (
     <div className='blogs'>
@@ -18,10 +16,13 @@ const BlogPosts = () => {
       </div>
 
       <div className="all_posts">
-      <BlogPost onPostClick={handlePostClick}/>      
+      <BlogPost onPostClick={onPostClick}/>      
       </div>    
     </div>
   )
 }
 
+BlogPosts.propTypes = {
+  onPostClick: PropTypes.func.isRequired
+}
 export default BlogPosts

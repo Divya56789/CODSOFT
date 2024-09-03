@@ -3,8 +3,8 @@ import { signIn, signUp } from "../actions/auth";
 
 const initialState = {
     loading : false,
-    user : null,
-    token : null,
+    user: JSON.parse(localStorage.getItem('user')),
+    token: localStorage.getItem('token'),
     error : ""
 }
 
@@ -12,9 +12,9 @@ const authSlice = createSlice({
     name:"user",
     initialState,
     reducers: {
-        logout: (state) => {
-            state.user = null;
-            state.token = null;
+        logout: () => {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
         }
     },
     extraReducers: (builder) => {
@@ -27,6 +27,8 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.user = action.payload;
                 state.token = action.payload.token;
+                localStorage.setItem('user', JSON.stringify(action.payload));
+                localStorage.setItem('token', action.payload.token);
             })
             .addCase(signIn.rejected, (state, action) => {
                 state.loading = false;
@@ -38,8 +40,10 @@ const authSlice = createSlice({
             })
             .addCase(signUp.fulfilled, (state, action) => {
                 state.loading = false;
-                state.user = action.payload.newUser;
+                state.user = action.payload;
                 state.token = action.payload.token;
+                localStorage.setItem('user', JSON.stringify(action.payload));
+                localStorage.setItem('token', action.payload.token);
             })
             .addCase(signUp.rejected, (state, action) => {
                 state.loading = false;
