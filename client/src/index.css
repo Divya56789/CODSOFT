@@ -10,7 +10,6 @@ body{
     font-weight: 400;
     width: 90%;
     margin: auto;
-    /* border: 2px solid aqua;    */
     text-wrap: wrap;
  
 }
@@ -27,12 +26,12 @@ p{
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    
+    cursor: pointer;
 }
 
 
 
-/* profile page css */
+/* Profile.jsx page css */
 .profile_page{
     display: flex;
     align-items: center;
@@ -62,15 +61,17 @@ p{
     border:2px solid rgba(240, 240, 237, 0.985)
 }
 .logout {
-    color: rgba(240, 240, 237, 0.985);
-    background-color: #c00a0a;
+    display: inline-block;
+    padding: 10px 15px;
     border: none;
-    padding: 0.5em 0.8em;
-    border-radius: 18px;
+    border-radius: 5px;
+    background-color: rgb(157, 5, 5);
+    color: white;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 1em;
     max-width: 100px;
+}
+.logout:hover{
+    background-color: rgb(100, 2, 2);
 }
 @media screen and (max-width: 678px){
     .profile_page{
@@ -89,11 +90,27 @@ p{
     }
 }
 
-/* styling the comment section */
+/* SingleBlogPost.jsx css */
+.post{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+.post img{
+    max-width: 100%;
+    height: auto;
+}
+.post .post-content{
+    font-size: 1em;
+    font-weight: 500;
+}
 .comment-section {
     margin-top: 20px;
     border-top: 1px solid #ddd;
     padding-top: 15px;
+    background-color: #f0f0f0;
 }
 
 .comment-section h3 {
@@ -126,12 +143,12 @@ p{
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007BFF;
+    background-color: rgb(157, 5, 5);
     color: white;
     cursor: pointer;
 }
 
 .comment-section button:hover {
-    background-color: #0056b3;
+    background-color: rgb(100, 2, 2);
 }
 

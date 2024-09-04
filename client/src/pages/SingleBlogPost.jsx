@@ -28,7 +28,6 @@ const SingleBlogPost = () => {
         <img src={post.attachment} alt="picture" />
         <p className="post-content">{post.content}</p>
 
-        {/* Highlighted Section: Comment Form */}
         <div className="comment-section">
           <h3>Comments</h3>
           <ul>
@@ -43,7 +42,6 @@ const SingleBlogPost = () => {
           />
           <button onClick={handleCommentSubmit}>Add Comment</button>
         </div>
-        {/* End of Highlighted Section */}
       </div>
 
   );

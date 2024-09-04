@@ -1,11 +1,10 @@
-nav{
+.website-navigation{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 1em 0;
     margin-bottom: 1em;
-    flex-wrap: wrap;
 }
 
 .nav_right, .nav_left{
@@ -78,6 +77,9 @@ a{
 .search-button:hover {
     background-color: #c00a0a;
 }
+.mobile-navigation{
+    display: none;
+}
 
 @media screen and (max-width: 585px) {
     .nav_right, .nav_left {
@@ -90,5 +92,26 @@ a{
 
     .search-container input {
         width: 100%;
+    }
+}
+@media screen and (max-width: 680px){
+    .website-navigation{
+        display: none;
+    }
+    .mobile-navigation{
+        display: flex;
+        flex-direction: column;
+        gap:1em;
+        padding: 0.5em 0;
+        margin-bottom: 1em;
+    }
+    .nav-content{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .right-nav-content{
+        display: flex;
+        gap:1em;
     }
 }

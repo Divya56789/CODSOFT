@@ -14,7 +14,6 @@ export const createBlogPost = async (req, res) => {
     const post = req.body;
     const newBlogPost = new BlogPost({...post, creator : req.userId, createdAt: new Date().toISOString()});
 
-    if(!req.userId) return res.status(400).json({message: "Unauthenticated"})
     try {
         await newBlogPost.save();
         res.status(209).json({message: "Successfully created BlogPost.", newBlogPost})

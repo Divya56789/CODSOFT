@@ -1,4 +1,3 @@
-import './App.css'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import CreateBlogPost from './pages/CreateBlogPost';
@@ -28,4 +27,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

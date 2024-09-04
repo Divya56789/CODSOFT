@@ -25,8 +25,6 @@ const authSlice = createSlice({
             })
             .addCase(signIn.fulfilled, (state, action) => {
                 state.loading = false;
-                state.user = action.payload;
-                state.token = action.payload.token;
                 localStorage.setItem('user', JSON.stringify(action.payload));
                 localStorage.setItem('token', action.payload.token);
             })
@@ -40,8 +38,6 @@ const authSlice = createSlice({
             })
             .addCase(signUp.fulfilled, (state, action) => {
                 state.loading = false;
-                state.user = action.payload;
-                state.token = action.payload.token;
                 localStorage.setItem('user', JSON.stringify(action.payload));
                 localStorage.setItem('token', action.payload.token);
             })

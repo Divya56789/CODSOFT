@@ -19,6 +19,7 @@ const Nav = () => {
   };
   return (
     <nav>
+      <div className="website-navigation">
       <div className="nav_left">
           <h3>Blogging Platform</h3>
           <ul>
@@ -28,9 +29,6 @@ const Nav = () => {
             <li>
               <Link to="/blog">Blog</Link>
             </li>
-            {/* <li>
-              <Link to="/profile">Profile</Link>
-            </li> */}
           </ul>
       </div>
       <div className="nav_right">
@@ -52,6 +50,40 @@ const Nav = () => {
           {user ? (<img src={userPic} alt="pic" className='user_avatar' onClick={() => navigate('/profile')}/>) : (
               <button className='button' onClick={() => navigate('/auth')}>Sign In</button>
           )}
+      </div>
+      </div>
+
+      <div className="mobile-navigation">
+          <div className="nav-content">
+            <ul>
+              <li>
+                <Link to='/'>Home</Link>
+              </li>
+              <li>
+                <Link to="/blog">Blog</Link>
+              </li>
+            </ul>
+            <div className="right-nav-content">
+              <Link to='/create' className='write'>
+                <img src={create} alt="create_icon" />
+                <p>write</p>
+              </Link>
+              {user ? (<img src={userPic} alt="pic" className='user_avatar' onClick={() => navigate('/profile')}/>) : (
+                  <button className='button' onClick={() => navigate('/auth')}>Sign In</button>
+              )}
+            </div>
+          </div>
+          <div className="search-container">
+            <input 
+              type="text" 
+              placeholder="Search Post..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button onClick={handleSearch} className="search-button">
+              <img src={search} alt="search-icon" />
+            </button>
+        </div>
       </div>
     </nav>
   )

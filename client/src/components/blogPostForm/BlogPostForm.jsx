@@ -12,6 +12,8 @@ const BlogPostForm = () => {
   const [postData, setPostData] = useState({title : "", description: "",content: "", attachment: ""});
   const user = useSelector(state => state.users) 
 
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -37,8 +39,9 @@ const BlogPostForm = () => {
   }
 
   const clearformData = () => {
-    setPostData({title : " ", description: " ",content: " ", attachment: " "});
+    setPostData({title : "", description: "",content: "", attachment: ""});
   }
+  
   return (
     <>
       {user.token ? (
@@ -65,7 +68,7 @@ const BlogPostForm = () => {
             <img src={sent} alt="sent_icon" />
             </button>
         </div>
-      </form>) : (<p>Please sign in to create a blog post.</p>)}
+      </form>) : (<h1>Please sign in to create a blog post.</h1>)}
     </>  
   )
 }
